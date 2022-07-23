@@ -3,16 +3,14 @@ import {
   ImageGalleryItemItem,
   ImageGalleryItemImage,
 } from './ImageGalleryItem.styled';
-//import { Component } from 'react';
 import { useState } from 'react';
 
-export const ImageGalleryItem = ({item}) => {
+export const ImageGalleryItem = ({ item }) => {
+  const [isOpen, setIsOpen] = useState(false);
 
-const [isOpen, setIsOpen] = useState(false);
-
-const toggleModal = (_) => {
-  setIsOpen(prevState => !isOpen);
-}
+  const toggleModal = _ => {
+    setIsOpen(prevState => !isOpen);
+  };
 
   return (
     <ImageGalleryItemItem>
@@ -21,9 +19,7 @@ const toggleModal = (_) => {
         alt=""
         onClick={toggleModal}
       />
-      {isOpen && (
-        <Modal onClick={toggleModal} modalImg={item.largeImageURL} />
-      )}
+      {isOpen && <Modal onClick={toggleModal} modalImg={item.largeImageURL} />}
     </ImageGalleryItemItem>
   );
 };
