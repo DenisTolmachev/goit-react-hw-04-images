@@ -4,21 +4,14 @@ import { ModalBackdrop, ModalImg } from './Modal.styled';
 export const Modal = ({modalImg, onClick}) => {
 
   useEffect(() => {
-    const handleKeyDown = e => {
-      if (e.key === 'Escape') {
-        onClick();
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [onClick]);
-
-  const closeModal = e => {
-    if (e.target === e.currentTarget) {
+    window.addEventListener('keydown', closeModal);
+    return () => window.removeEventListener('keydown', closeModal);
+  });
+  
+  const closeModal = (e) => {
+    if(e.key === 'Escape' || e.target === e.currentTarget){
       onClick();
-    }
+    };
   };
 
   return (
